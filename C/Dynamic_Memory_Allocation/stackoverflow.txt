@@ -1,0 +1,50 @@
+Title: Detecting internal holes in page which allocated by mmap
+
+I use x64 Ubuntu 20.04 machine
+
+
+I have an assignment that say "write your own malloc() and free() functions by using system calls".
+So far I used malloc() and free() function so much but I don't familier with mmap and page size or paging.
+
+And assignment also wants "minimize memory fragmentation and reuse a single page several times"
+
+As I understand it page is like a real paper page in books.I must align data to this frame.
+
+
+But I don't understand where is page. Is it return value of mmap?.
+When I use malloc , malloc simply return a void pointer to head of allocated memory and I just cast it and use. I don't have to mess with the page.
+
+void *mymalloc(size_t size)
+{
+
+  static int page_count = 1;
+
+  size_t total_size = size + sizeof(size_t);
+
+  size_t allocation_overflow = total_size % page_size;
+
+  if(allocation_overflow > 0)
+  {
+    page_count++;
+    total_size += page_size - allocation_overflow;
+  }
+
+  void *data = mmap(NULL ,total_size, PROT_EXEC | PROT_READ | PROT_WRITE , MAP_PRIVATE , 0 , 0);
+
+  size_ptr[0] = total_size;
+
+  void* allocated_mem_pointer = &size_ptr[1];
+
+  return allocated_mem_pointer;
+}
+
+
+When the above code runs caller just give one size and call mymalloc(size)
+
+But in every call mymalloc(), it allocate new memory and return head of this memory.
+When mymalloc() calls , I want to check the current page that I have (and programmer don't know)
+and if page is full mymalloc should create new page but if page is not full mymalloc() should find
+some memory block in current page and returns head of that block.
+
+
+I already read :https://en.wikipedia.org/wiki/Paging and https://man7.org/linux/man-pages/man2/mmap.2.html ,but it doesn't say where page represented when I use mmap.

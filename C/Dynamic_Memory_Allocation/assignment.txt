@@ -1,0 +1,121 @@
+Dynamic Memory Allocation
+You can implement this exercise in Rust programming language.
+
+Using the system calls (mmap and munmap) implement your own functions for dynamic memory allocation:
+mymalloc and myfree, which have the same functionality as malloc and free from the standard
+C library. Save the implementations in files mymalloc.h and mymalloc.c.
+
+Optimal implementation often depends on usage, but we always have some basic desirable features.
+
+Firstly, allocation should be quick. This means that we are trying to reduce the number of direct
+system calls (brk, mmap) because these are very slow. Therefore, we often re-use the released part
+of the memory.
+
+Secondly, allocation should be memory efficient. Memory allocation (OS) is often limited by
+hardware. For desktops, the OS is usually limited to allocating 1 page of memory, ie. 4096 B.
+However, we often want smaller sizes for allocation, so we must manage and distribute the memory
+allocated by the OS.
+
+Allocations and releases should minimize memory fragmentation. Multiple allocations and releases
+in the program may result in smaller memory segments that can no longer be reused.
+Allocations and releases tend to reduce such segments.
+
+Basic implementation
+A simple implementation of mymalloc and myfree functions is an indirect call to the
+mmap and munmap functions. This solution will not offer fast or efficient allocations.
+
+In this solution we only need to remember the length of the allocated memory.
+Therefore, we must allocate at least the desired length + the size of the variable for storing
+the length (size_t). We store the length as first element, then return the next element.
+It is also good to calculate the actual length of allocated memory, which will be rounded to
+page size.
+
+
+As an example, when allocating, we can do the following:
+
+...
+int page_size = getpagesize();
+size_t total_size = size + sizeof(size_t);
+
+// Round the size to multiple the size of the page
+size_t alloc_over = total_size % page_size;
+if(alloc_over > 0)
+    total_size += page_size - alloc_over;
+
+void* data = mmap(total_size, ...);
+// size_ptr will point to stored size
+size_t* size_ptr = data;
+size_ptr[0] = total_size;
+// pointer to allocated memory
+void* alloc_ptr = data + sizeof(size_t);
+
+
+
+...
+When releasing, we need to read that size back, for example:
+
+...
+void* data = alloc_ptr - sizeof(size_t);
+size_t* size_ptr = data;
+...
+Adding to the end
+The allocation requirements are often much smaller than the page size returned by the mmap function.
+Therefore, it makes sense to reuse a single page several times.
+
+As a simple upgrade of the allocation, we can remember for each allocated page a pointer to the end,
+ie. the first address inside page not yet assigned. For each further allocation, we look at the most
+recently allocated page. If there is still space for the currently requested allocation, we add it
+at the end of the page. Otherwise, we require a new page with mmap function.
+
+We need to be a little more cautious when releasing. The page should not be released at the first
+call of myfree function, but can only be released when all allocated parts have been released.
+Their release can, of course, take place in random order.
+The easiest way to achieve this is to reserve some memory at the beginning of the page to count
+the number of currently allocated segments in the page.
+You increase this with each allocation, and you decrease it with each release.
+When this counter is equal to 0, you can release the entire page. In each allocated segment it
+would be good to also keep a pointer to the start of the page so that you can read the values ​​from
+there and finally release the page.
+
+Reuse of freed memory
+Holes generated in the heap from the release, can be with some additional management,
+also recorded and re-used when the hole is large enough for the required size of the allocation.
+
+This is usually implemented with a dynamically linked list. We keep a global pointer to the
+first allocated page (and consequently to the first page allocated with mmap), where we have
+a custom structure for memory management. Here you can store the pointer to the first free
+segment within the page, the largest free segment, to the next allocated page, etc. We also
+have a structure inside each free segment that contains the size of the free segment and a
+pointer to the next free segment inside the page.
+Custom division of pages according to allocation requirements is usually not effective.
+Therefore, it is more appropriate to allocate the memory, which is aligned within the page.
+Typical sizes are: 2, 4, 8, 16, 32, ... In addition, it is reasonable to have a minimum size of
+allocated memory. This simplifies the re-use of freed memory, with minor losses.
+
+It is also advisable to arrange the list of free segments in order, since this makes it easier
+to combine smaller adjacent segments into one larger one.
+
+When looking for a free memory, we need to search through the lists of all allocated pages.
+If a free memory is not found, we allocate a new, appropriately large page.
+Larger allocations (for example, larger than 1 page) should be managed in a simpler way.
+
+When looking for the right free memory, it makes sense to find the smallest free memory that can
+still hold the required size. This reduces memory fragmentation (saving big chunks of memory for
+big demands).
+
+When releasing, you must place the free memory in the list of available memory.
+It is also wise to combine smaller adjacent pieces into larger pieces. If an allocated
+page contains only freed memory (or one large free memory), you can release it by calling munmap.
+Prepare the test of your implementation in main.c. Demonstrate the functionality of the
+implemented functions with meaningful examples.
+
+Points
+The exercise is worth a maximum of 50 points. The points are divided as:
+
+basic implementation 10 points
+adding to the end 20 points
+reuse of freed memory 20 points
+If you complete the second or third task, you also get points from the previous task.
+
+Upload the zip archive to the website with the following files inside: mymalloc.c, mymalloc.h,
+main.c and Makefile or CMakeLists.txt.
