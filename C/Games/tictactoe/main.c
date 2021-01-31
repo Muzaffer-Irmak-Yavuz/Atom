@@ -3,6 +3,6 @@
 
 int main() {
 
-  printf("Simdi hatalari izle");
+  debug_Move();
   return 0;
 }

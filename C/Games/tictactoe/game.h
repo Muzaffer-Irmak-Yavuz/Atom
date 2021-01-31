@@ -12,7 +12,7 @@
 
 void init_players();
 
-void get_player_input(move *move);
+void get_player_input(Move *move);
 
 
 

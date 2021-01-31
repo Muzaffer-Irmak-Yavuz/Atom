@@ -3,12 +3,14 @@
 
 #include <stdio.h>
 
-struct moveqq
+struct Move
 {
   unsigned int move :4;
 }__attribute__((packed));
 
 
-typedef struct moveqq move;
+typedef struct Move Move;
+
+void debug_Move();
 
 #endif
