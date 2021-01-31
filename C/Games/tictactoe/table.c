@@ -66,7 +66,7 @@ void print_table()
     {
       printf("%c",gameTable[rowIter][columnIter] );
     }
-    
+
     printf("\n");
   }
 }
