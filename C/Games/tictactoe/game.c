@@ -21,7 +21,7 @@ void init_players()
 
 }
 
-void get_player_input(Move *move)
+void get_player_input(move *move)
 {
 
 
@@ -34,7 +34,7 @@ void get_player_input(Move *move)
     } while(tempMove < 1 || tempMove > 9);
 
     move -> move = tempMove;
-  
+
 
 
 

@@ -2,12 +2,13 @@
 #define MOVE_H
 
 #include <stdio.h>
-struct Move
+
+struct moveqq
 {
   unsigned int move :4;
 }__attribute__((packed));
 
 
-#define struct Move Move_t
+typedef struct moveqq move;
 
 #endif
