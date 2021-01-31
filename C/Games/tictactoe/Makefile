@@ -3,7 +3,10 @@ CC = gcc
 all: main.c
 
 main: main.c
-	$(CC) -o main main.c game.c table.c
+	$(CC) -o main main.c
+
+print: main
+	./main
 
 
 clear:
