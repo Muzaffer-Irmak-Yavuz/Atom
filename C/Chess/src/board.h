@@ -1,14 +1,13 @@
 #if !defined BOARD_H_INCLUDED
 #define BOARD_H_INCLUDED
 
-#include "frame.h"
 #include "coordinates.h"
+#include "frame.h"
 
 #include <stdio.h>
 #include <stdbool.h>
 
-enum Color {White , Black};
-
+enum Color {SWhite , SBlack};
 
 typedef enum Color Color;
 

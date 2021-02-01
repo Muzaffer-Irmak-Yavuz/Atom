@@ -3,10 +3,10 @@
 
 #include "coordinates.h"
 
-enum Color {White , Black};
+enum PieceColor {PWhite , PBlack};
 enum Name  {Pawn , Rook , Knight ,Bishop , Queen ,King};
 
-typedef enum Color Color;
+typedef enum PieceColor PieceColor;
 typedef enum Name Name;
 
 
@@ -14,7 +14,7 @@ struct Piece
 {
 
   Coordinate coordinate;
-  Color color;
+  PieceColor color;
   Name name;
 };
 typedef struct Piece Piece;

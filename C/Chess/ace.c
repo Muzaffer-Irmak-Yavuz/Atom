@@ -1,15 +1,9 @@
-#include "src/board.h"
-#include "src/media.h"
-
-
+#include "src/game.h"
 
 int main()
 {
-  system("clear");
-  Board *board = (Board *)malloc(sizeof(Board));
-  init_board(board);
-  print_board(board);
 
+  game_loop();
 
   return 0;
 }
