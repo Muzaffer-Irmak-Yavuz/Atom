@@ -32,10 +32,10 @@ struct Board
 typedef struct Board Board;
 
 
-//TODO add print_board
-
 
 Board *init_board();
+
+void print_board(Board *board);
 
 
 

@@ -95,3 +95,11 @@ void init_board(Board *board)
   return;
 
 }
+
+
+
+
+void print_board(Board *board)
+{
+
+}
