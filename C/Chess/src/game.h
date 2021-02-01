@@ -9,6 +9,8 @@
 
 void game_loop();
 
+void sync_piece_with_board(Board *board , Piece piece);
+
 
 
 #endif

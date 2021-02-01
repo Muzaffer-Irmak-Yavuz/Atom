@@ -140,16 +140,16 @@ void init_board(Board *board)
         if(horIter % 2 == 0)
         {
           if(squareIter % 2 == 0)
-            {board -> square[squareIter].color = Black;}
+            {board -> square[squareIter].color = SBlack;}
           else
-            {board -> square[squareIter].color = White;}
+            {board -> square[squareIter].color = SWhite;}
         }
         else
         {
           if(squareIter % 2 == 0)
-            {board -> square[squareIter].color = White;}
+            {board -> square[squareIter].color = SWhite;}
           else
-            {board -> square[squareIter].color = Black;}
+            {board -> square[squareIter].color = SBlack;}
         }// coloring ends
 
 
