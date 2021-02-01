@@ -1,12 +1,13 @@
 CC = gcc
 CFLAGS = -o
-SRCPATH = src
+HPATH = src
+NAME = ace
 
-compile: ace.c
-	$(CC) $(CFLAGS) ace ace.c $(SRCPATH)/media.c
+compile: $(NAME).c
+	$(CC) $(CFLAGS) $(NAME) $(NAME).c $(HPATH)/media.c
 
-run: ace
-	./ace
+run: $(NAME)
+	./$(NAME)
 
 clear:
-	rm ace
+	rm $(NAME)
