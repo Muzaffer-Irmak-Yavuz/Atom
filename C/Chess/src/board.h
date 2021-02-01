@@ -3,6 +3,7 @@
 
 #include "frame.h"
 #include "coordinates.h"
+
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -35,7 +36,7 @@ typedef struct Board Board;
 
 
 
-Board *init_board();
+void init_board(Board *board);
 
 void print_board(Board *board);
 

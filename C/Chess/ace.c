@@ -5,8 +5,9 @@
 
 int main()
 {
-
-  play_music(PLAY_NEXT_MOVE);
+  Board *board = (Board *)malloc(sizeof(Board));
+  init_board(board);
+  print_board(board);
 
 
   return 0;
