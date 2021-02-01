@@ -13,9 +13,13 @@ typedef enum Name Name;
 struct Piece
 {
 
+  Coordinate coordinate;
   Color color;
   Name name;
 };
-
 typedef struct Piece Piece;
+
+void init_pieces(Piece piece[32]);
+
+
 #endif

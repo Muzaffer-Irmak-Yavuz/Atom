@@ -13,9 +13,12 @@ void init_board(Board *board)
 
   for(size_t rowIter = 0; rowIter < BOARD_FRAME_ROW -1; rowIter++)
   {
-    for(size_t colIter = 0; colIter < BOARD_FRAME_COLUMN - 2;colIter += 4)
+    for(size_t colIter = 0; colIter < BOARD_FRAME_COLUMN - 2;colIter++)
     {
+
       board -> frameVar.frame[rowIter][colIter] = wall;
+      if(colIter != 0 && colIter % 4 != 0)
+        {board -> frameVar.frame[rowIter][colIter] = ' ';}
     }
   }
 
@@ -45,6 +48,11 @@ void init_board(Board *board)
 
 
   // passing character
+
+  for(size_t colIter = 0; colIter < BOARD_FRAME_COLUMN; colIter++)
+  {
+      board -> frameVar.frame[17][colIter] = ' ';
+  }
 
   board -> frameVar.frame[17][2] = 'A';
   board -> frameVar.frame[17][6] = 'B';
