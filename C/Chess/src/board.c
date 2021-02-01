@@ -1,7 +1,64 @@
 #include "board.h"
 
+
 void init_board(Board *board)
 {
+
+  //init frame
+
+  const char wall = '|';
+  const char roof = '-';
+
+  //passing walls
+
+  for(size_t rowIter = 0; rowIter < BOARD_FRAME_ROW -1; rowIter++)
+  {
+    for(size_t colIter = 0; colIter < BOARD_FRAME_COLUMN - 2;colIter += 4)
+    {
+      board -> frameVar.frame[rowIter][colIter] = wall;
+    }
+  }
+
+  //passing roofs
+
+  for(size_t rowIter = 0; rowIter < BOARD_FRAME_ROW -1; rowIter += 2)
+  {
+    for(size_t colIter = 1; colIter < BOARD_FRAME_COLUMN -2; colIter++)
+    {
+      if(colIter % 4 == 0)
+        {continue;}
+
+      board -> frameVar.frame[rowIter][colIter] = roof;
+    }
+  }
+
+  // passing numbers
+
+  board -> frameVar.frame[1][34] = '8';
+  board -> frameVar.frame[3][34] = '7';
+  board -> frameVar.frame[5][34] = '6';
+  board -> frameVar.frame[7][34] = '5';
+  board -> frameVar.frame[9][34] = '4';
+  board -> frameVar.frame[11][34] = '3';
+  board -> frameVar.frame[13][34] = '2';
+  board -> frameVar.frame[15][34] = '1';
+
+
+  // passing character
+
+  board -> frameVar.frame[17][2] = 'A';
+  board -> frameVar.frame[17][6] = 'B';
+  board -> frameVar.frame[17][10] = 'C';
+  board -> frameVar.frame[17][14] = 'D';
+  board -> frameVar.frame[17][18] = 'E';
+  board -> frameVar.frame[17][22] = 'F';
+  board -> frameVar.frame[17][26] = 'G';
+  board -> frameVar.frame[17][30] = 'H';
+
+
+  // Init SQUARES
+
+
   //all board for
   //each horizon
   for(size_t horIter = 0; horIter < 8; horIter++)
@@ -97,9 +154,14 @@ void init_board(Board *board)
 }
 
 
-
-
 void print_board(Board *board)
 {
-
+  for(size_t rowIter = 0; rowIter < BOARD_FRAME_ROW; rowIter++)
+  {
+    for(size_t colIter = 0; colIter < BOARD_FRAME_COLUMN; colIter++)
+    {
+      printf("%c", board -> frameVar.frame[rowIter][colIter]);
+    }
+    printf("\n");
+  }
 }

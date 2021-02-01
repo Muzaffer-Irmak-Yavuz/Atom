@@ -1,6 +1,7 @@
 #if !defined BOARD_H_INCLUDED
 #define BOARD_H_INCLUDED
 
+#include "frame.h"
 #include "coordinates.h"
 #include <stdio.h>
 #include <stdbool.h>
@@ -26,6 +27,7 @@ typedef struct Square Square;
 
 struct Board
 {
+  Frame_t frameVar;
   Square square[SQ_NUM];
 };
 
