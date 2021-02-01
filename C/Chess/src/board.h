@@ -1,27 +1,14 @@
 #if !defined BOARD_H_INCLUDED
 #define BOARD_H_INCLUDED
 
+#include "coordinates.h"
 #include <stdio.h>
 #include <stdbool.h>
 
-enum Color      {White , Black};
-enum Line       {LINE_A , LINE_B , LINE_C , LINE_D , LINE_E , LINE_F , LINE_G , LINE_H};
-enum Horizontal {H1 ,H2 , H3 ,H4 ,H5 , H6, H7 ,H8};
+enum Color {White , Black};
+
 
 typedef enum Color Color;
-typedef enum Line Line;
-typedef enum Horizontal Horizontal;
-
-struct Coordinate
-{
-  
-  Line line;
-  Horizontal horizontal;
-};
-
-typedef struct Coordinate Coordinate;
-
-
 
 
 struct Square
@@ -39,7 +26,6 @@ typedef struct Square Square;
 
 struct Board
 {
-
   Square square[SQ_NUM];
 };
 

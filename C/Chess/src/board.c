@@ -7,8 +7,6 @@ void init_board(Board *board)
   for(size_t horIter = 0; horIter < 8; horIter++)
   {
 
-
-
       for(size_t squareIter = 0; squareIter < 8; squareIter++)
       {
         // line naming
