@@ -6,8 +6,11 @@
 enum PieceColor {PWhite , PBlack};
 enum Name  {Pawn , Rook , Knight ,Bishop , Queen ,King};
 
+
+
 typedef enum PieceColor PieceColor;
 typedef enum Name Name;
+
 
 
 struct Piece

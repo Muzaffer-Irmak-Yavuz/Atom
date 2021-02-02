@@ -35,6 +35,16 @@ void init_board(Board *board)
     }
   }
 
+  board -> frameVar.frame[1][33] = ' ';
+  board -> frameVar.frame[3][33] = ' ';
+  board -> frameVar.frame[5][33] = ' ';
+  board -> frameVar.frame[7][33] = ' ';
+  board -> frameVar.frame[9][33] = ' ';
+  board -> frameVar.frame[11][33] = ' ';
+  board -> frameVar.frame[13][33] = ' ';
+  board -> frameVar.frame[15][33] = ' ';
+
+
   // passing numbers
 
   board -> frameVar.frame[1][34] = '8';
@@ -66,96 +76,56 @@ void init_board(Board *board)
 
   // Init SQUARES
 
-
-  //all board for
-  //each horizon
-  for(size_t horIter = 0; horIter < 8; horIter++)
+  for(size_t lineIter = LINE_A; lineIter <= LINE_H; lineIter++)
   {
+    board -> square[lineIter].coordinate.horizontal = H1;
+    board -> square[lineIter].coordinate.line =(Line)lineIter;
 
-      for(size_t squareIter = 0; squareIter < 8; squareIter++)
-      {
-        // line naming
-        if(squareIter == LINE_A)
-          {board -> square[squareIter].coordinate.line = LINE_A;}
+  }
 
-        else if(squareIter == LINE_B)
-          {board -> square[squareIter].coordinate.line = LINE_B;}
+  for(size_t lineIter = LINE_A ,sqIter = 8; lineIter <= LINE_H; lineIter++,sqIter++)
+  {
+    board -> square[sqIter].coordinate.horizontal = H2;
+    board -> square[sqIter].coordinate.line =(Line)lineIter;
 
-        else if(squareIter == LINE_C)
-          {board -> square[squareIter].coordinate.line = LINE_C;}
+  }
 
-        else if(squareIter == LINE_D)
-          {board -> square[squareIter].coordinate.line = LINE_D;}
+  for(size_t lineIter = LINE_A ,sqIter = 16; lineIter <= LINE_H; lineIter++,sqIter++)
+  {
+    board -> square[sqIter].coordinate.horizontal = H3;
+    board -> square[sqIter].coordinate.line =(Line)lineIter;
+  }
 
-        else if(squareIter == LINE_E)
-          {board -> square[squareIter].coordinate.line = LINE_E;}
+  for(size_t lineIter = LINE_A ,sqIter = 24; lineIter <= LINE_H; lineIter++,sqIter++)
+  {
+    board -> square[sqIter].coordinate.horizontal = H4;
+    board -> square[sqIter].coordinate.line =(Line)lineIter;
+  }
 
-        else if(squareIter == LINE_F)
-          {board -> square[squareIter].coordinate.line = LINE_F;}
+  for(size_t lineIter = LINE_A ,sqIter = 32; lineIter <= LINE_H; lineIter++,sqIter++)
+  {
+    board -> square[sqIter].coordinate.horizontal = H5;
+    board -> square[sqIter].coordinate.line =(Line)lineIter;
+  }
 
-        else if(squareIter == LINE_G)
-          {board -> square[squareIter].coordinate.line = LINE_G;}
+  for(size_t lineIter = LINE_A ,sqIter = 40; lineIter <= LINE_H; lineIter++,sqIter++)
+  {
+    board -> square[sqIter].coordinate.horizontal = H6;
+    board -> square[sqIter].coordinate.line =(Line)lineIter;
+  }
 
-        else if(squareIter == LINE_H)
-          {board -> square[squareIter].coordinate.line = LINE_H;}
+  for(size_t lineIter = LINE_A ,sqIter = 48; lineIter <= LINE_H; lineIter++,sqIter++)
+  {
+    board -> square[sqIter].coordinate.horizontal = H7;
+    board -> square[sqIter].coordinate.line =(Line)lineIter;
 
-        // end of line naming
+  }
 
-
-        //horizontal naming
-        if(horIter == H1)
-          {board -> square[squareIter].coordinate.horizontal = H1;}
-
-        else if(horIter == H2)
-          {board -> square[squareIter].coordinate.horizontal = H2;}
-
-        else if(horIter == H3)
-          {board -> square[squareIter].coordinate.horizontal = H3;}
-
-        else if(horIter == H4)
-          {board -> square[squareIter].coordinate.horizontal = H4;}
-
-        else if(horIter == H5)
-          {board -> square[squareIter].coordinate.horizontal = H5;}
-
-        else if(horIter == H6)
-          {board -> square[squareIter].coordinate.horizontal = H6;}
-
-        else if(horIter == H7)
-          {board -> square[squareIter].coordinate.horizontal = H7;}
-
-        else if(horIter == H8)
-          {board -> square[squareIter].coordinate.horizontal = H8;}
-
-        // horizontal naming
-
-
-        if(horIter == H1 || horIter == H2 || horIter == H7 || horIter == H8)
-          {board -> square[squareIter].isEmpty = false;}
-        else
-          {board -> square[squareIter].isEmpty = false;}
-
-
-        //for coloring
-        if(horIter % 2 == 0)
-        {
-          if(squareIter % 2 == 0)
-            {board -> square[squareIter].color = SBlack;}
-          else
-            {board -> square[squareIter].color = SWhite;}
-        }
-        else
-        {
-          if(squareIter % 2 == 0)
-            {board -> square[squareIter].color = SWhite;}
-          else
-            {board -> square[squareIter].color = SBlack;}
-        }// coloring ends
-
-
-      }// each square of horIter ends
-
-  }//biggest for ends
+  for(size_t lineIter = LINE_A ,sqIter = 56; lineIter <= LINE_H; lineIter++,sqIter++)
+  {
+    board -> square[sqIter].coordinate.horizontal = H8;
+    board -> square[sqIter].coordinate.line =(Line)lineIter;
+  }
 
   return;
 
@@ -164,6 +134,7 @@ void init_board(Board *board)
 
 void print_board(Board *board)
 {
+  system("clear");
   for(size_t rowIter = 0; rowIter < BOARD_FRAME_ROW; rowIter++)
   {
     for(size_t colIter = 0; colIter < BOARD_FRAME_COLUMN; colIter++)
