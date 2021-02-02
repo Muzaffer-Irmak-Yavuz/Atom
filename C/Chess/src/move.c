@@ -16,11 +16,12 @@ void print_move(Move *move)
 
   printf("pieceName :%c\n",move->pieceName);
 
-
+  printf("Coordinate horizontal :%d\n",move -> coordinate.horizontal +1);
+  printf("Coordinate line :%d\n",move -> coordinate.line +1);
 
 }
 
-void calculate_move(char string[9] , Move *move)
+void calculate_move(char *string , Move *move)
 {
   move -> hasPromote = false;
   move -> hasPieceMove = false;
@@ -81,14 +82,19 @@ void calculate_move(char string[9] , Move *move)
     }
   }// promote
 
-  char coordinate[3] = {'\0', '\0','\0'};
 
-  for(size_t coorFinder = strlen(string); coorFinder < 0; coorFinder++)
+  char coordinate[3];
+
+  for(int coorFinder = strlen(string); coorFinder >= 0; coorFinder--)
   {
+    //printf("%c  ",string[coorFinder] );
+
     if(isdigit(string[coorFinder]))
     {
+
       if(isalpha(string[coorFinder - 1]))
       {
+
         coordinate[0] = string[coorFinder - 1];
         coordinate[1] = string[coorFinder];
       }

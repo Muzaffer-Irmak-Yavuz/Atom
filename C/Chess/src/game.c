@@ -20,7 +20,8 @@ void game_loop()
 
   Move *move = (Move *)malloc(sizeof(Move));
 
-  char hamle[9];
+  char *hamle = (char *)malloc(sizeof(char));
+
   printf("Hamle gir :" );
   scanf("%s",hamle );
 

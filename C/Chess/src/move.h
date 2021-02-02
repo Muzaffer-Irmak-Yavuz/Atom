@@ -29,7 +29,7 @@ struct Move
 
 typedef struct Move Move;
 
-void calculate_move(char string[9] , Move *move);
+void calculate_move(char *string , Move *move);
 
 void print_move(Move *move);
 
