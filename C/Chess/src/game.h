@@ -5,6 +5,7 @@
 #include "board.h"
 #include "media.h"
 #include "piece.h"
+#include "move.h"
 
 
 void game_loop();

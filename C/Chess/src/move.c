@@ -1,20 +1,20 @@
 #include "move.h"
 
-void print_move(Move move)
+void print_move(Move *move)
 {
-  printf("hasPawnMove :%d\n",move.hasPawnMove);
-  printf("hasPieceMove :%d\n",move.hasPieceMove);
-  printf("hasCastle :%d\n",move.hasCastle);
+  printf("hasPawnMove :%d\n",move -> hasPawnMove);
+  printf("hasPieceMove :%d\n",move -> hasPieceMove);
+  printf("hasCastle :%d\n",move->hasCastle);
 
-  printf("hasCheck :%d\n",move.hasCheck);
-  printf("hasPromote :%d\n",move.hasPromote);
+  printf("hasCheck :%d\n",move->hasCheck);
+  printf("hasPromote :%d\n",move->hasPromote);
 
-  printf("hasDoubleMoveCharOption :%d\n",move.hasDoubleMoveCharOption);
-  printf("hasDoubleMoveNumOption :%d\n",move.hasDoubleMoveNumOption);
+  printf("hasDoubleMoveCharOption :%d\n",move->hasDoubleMoveCharOption);
+  printf("hasDoubleMoveNumOption :%d\n",move->hasDoubleMoveNumOption);
 
-  printf("hasTake :%d\n",move.hasTake);
+  printf("hasTake :%d\n",move->hasTake);
 
-  printf("pieceName :%c\n",move.pieceName);
+  printf("pieceName :%c\n",move->pieceName);
 
 
 

@@ -18,6 +18,17 @@ void game_loop()
 
   print_board(board);
 
+  Move *move = (Move *)malloc(sizeof(Move));
+
+  char hamle[9];
+  printf("Hamle gir :" );
+  scanf("%s",hamle );
+
+  calculate_move(hamle , move);
+
+  print_move(move);
+
+
 
 }
 
