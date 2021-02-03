@@ -3,9 +3,9 @@
 
 #include "position.h"
 
-enum Name {Pawn = 'P'   , Rook = 'R',
-           Knight = 'N' , Bishop = 'B',
-           Queen = 'Q'  , King = 'K'};
+enum Name {Pawn   , Rook,
+           Knight , Bishop,
+           Queen  , King};
 
 enum Colour {White = 1 , Black = 2};
 
@@ -17,5 +17,8 @@ struct Piece
 };
 
 typedef struct Piece Piece;
+
+void init_pieces(Piece piece[32]);
+
 
 #endif

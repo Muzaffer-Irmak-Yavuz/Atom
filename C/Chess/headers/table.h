@@ -4,6 +4,8 @@
 #include "square.h"
 #include "frame.h"
 
+#include <stdio.h>
+
 #define SQ_NUM (64)
 
 struct Table
@@ -13,5 +15,10 @@ struct Table
 };
 
 typedef struct Table Table;
+
+void init_table(Table *table);
+
+void print_table(Table *table);
+
 
 #endif
