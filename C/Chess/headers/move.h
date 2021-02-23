@@ -18,7 +18,7 @@ struct Move
   enum Position posPiecesGo[2];
 };
 
-
+void connect_table_w_frame(Table *table ,Piece piece[32]);
 
 
 

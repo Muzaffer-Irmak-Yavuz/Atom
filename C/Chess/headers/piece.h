@@ -3,6 +3,8 @@
 
 #include "position.h"
 
+#include <stdio.h>
+
 enum Name {Pawn   , Rook,
            Knight , Bishop,
            Queen  , King};
@@ -20,5 +22,6 @@ typedef struct Piece Piece;
 
 void init_pieces(Piece piece[32]);
 
+void print_pieces(Piece piece[32]);
 
 #endif

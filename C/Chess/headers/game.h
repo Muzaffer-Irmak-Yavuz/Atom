@@ -3,8 +3,9 @@
 
 #include "analyze.h"
 #include "move.h"
-#include "table.h"
 
+#include <unistd.h>
+#include <sys/mman.h>
 
 
 void game_loop();
