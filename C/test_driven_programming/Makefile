@@ -2,6 +2,7 @@ CC = gcc
 CFLAGS += -Wall
 CFLAGS += -o
 
+
 SPATH = src
 TPATH = test
 TSPATH = test/test_source
